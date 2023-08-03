@@ -7,66 +7,51 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    var body: some View {
-        //.leading - 子视图左对齐
-        VStack (alignment: .leading, spacing: 10) {
-            Text("Hello, World!我在测试")
-                .foregroundColor(Color.red)
-                .underline()
-                .font(Font.system(size: 25))
-                .padding()
-//            Spacer() //进行两端布局
-            Text("Hello, SwiftUI!")
-                .foregroundColor(Color.blue)
-                .underline()
-                .font(Font.system(size: 25))
-                .padding()
-        }
-        .padding(EdgeInsets(top: 30, leading: 0, bottom: 30, trailing: 0)) //组件元素的内间距Padding
-    }
-}
-
-struct ContentImage:View {
-    var body: some View {
-        Image("demo")
-            .frame(width: 300, height: 300, alignment: .center)
-            .clipShape(Circle()) //设置元素的形状
-            .shadow(radius: 30) //设置元素的阴影
-    }
-}
-
-struct Label:UIViewRepresentable {
-    //返回一个指定的UIKit组件
-    func makeUIView(context: Context) -> UILabel {
-        UILabel(frame: .zero)
-    }
-    //当组件更新时会被调用
-    func updateUIView(_ uiView: UILabel, context: Context) {
-        uiView.text = "Hello"
-    }
-}
-
-//定义行视图
-struct RowContent:View {
-    var body: some View {
-        HStack(alignment: .top) {
-            Image("touxiang").resizable().frame(width: 70, height: 70)
-            VStack(alignment: .leading, spacing: 10) {
-                Text("王小丫").bold().font(Font.system(size: 25))
-                Text("15137366666").font(Font.system(size: 20))
-            }
-            Spacer()
-        }.padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
-    }
-}
-
 extension UIColor {
     convenience init(hex: Int, alpha: CGFloat = 1.0) {
         let red = CGFloat((hex & 0xFF0000) >> 16) / 255.0
         let green = CGFloat((hex & 0x00FF00) >> 8) / 255.0
         let blue = CGFloat(hex & 0x0000FF) / 255.0
         self.init(red: red, green: green, blue: blue, alpha: alpha)
+    }
+}
+
+struct DengjiLabel: View {
+    var iconName: String
+    var text: String
+    var body: some View {
+        HStack(spacing: 2) {
+            Image(iconName)
+                .resizable()
+                .frame(width: 10, height: 10)
+                .padding(EdgeInsets(top: 1, leading: 1, bottom: 1, trailing: 0))
+            Text(text)
+                .bold()
+                .font(Font.system(size: 8))
+                .foregroundColor(Color(UIColor(hex: 0xFFFFFF)))
+                .lineLimit(1)
+                .frame(width: 12, height: 12)
+                .padding(EdgeInsets(top: 1, leading: 0, bottom: 1, trailing: 0))
+        }
+        .background(Color.green)
+        .cornerRadius(6)
+    }
+}
+
+struct ZhanglaoLabel: View {
+    var iconName: String
+    var text: String
+    var body: some View {
+        Image(iconName)
+            .resizable()
+            .frame(width: 32, height: 12)
+        Text(text)
+            .bold()
+            .font(Font.system(size: 8))
+            .foregroundColor(Color(UIColor(hex: 0xFFFFFF)))
+            .lineLimit(2)
+            .frame(width: 20, height: 12)
+            .padding(EdgeInsets(top: 1, leading: -42, bottom: 1, trailing: 0))
     }
 }
 
@@ -79,10 +64,23 @@ struct MessageContent:View {
                 HStack(alignment: .top, spacing: 4) {
                     Text("心爱的小摩托").foregroundColor(Color(UIColor(hex: 0xA4A9B3))).font(Font.system(size: 12))
                     Image("ic_nv").resizable().frame(width: 12, height: 12)
+                    DengjiLabel(iconName: "dengji", text: "54").frame(width: 26, height: 12)
+                    ZhanglaoLabel(iconName: "zhanglao", text: "长老").frame(width: 32, height: 12)
                 }
-            }
-            Spacer()
-        }.padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
+                Text("：当前文本是用户发的一段话，可以换行的一段话")
+                    .bold()
+                    .font(Font.system(size: 12))
+                    .foregroundColor(Color(UIColor(hex: 0x181E25)))
+                    .frame(width: 260, height: 40)
+                    .padding(EdgeInsets(top: -25, leading: 0, bottom: 0, trailing: 0))
+//                    .lineLimit(nil)
+//                    .multilineTextAlignment(.leading)
+//                    .tabViewStyle(PageTabViewStyle())
+//                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+//                    .tabItemAttributes(TabItemAttributes(label: ""), selection: {})
+//                    .padding(.leading, 20)//设置首行缩进
+            }.padding(EdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0))
+        }
     }
 }
 
