@@ -72,7 +72,7 @@ struct MessageContent:View {
                     .font(Font.system(size: 12))
                     .foregroundColor(Color(UIColor(hex: 0x181E25)))
                     .frame(width: 260, height: 40)
-                    .padding(EdgeInsets(top: -25, leading: -5, bottom: 0, trailing: 0))
+                    .padding(EdgeInsets(top: -22, leading: -5, bottom: 0, trailing: 0))
                     .lineLimit(nil)
                     .multilineTextAlignment(.leading)
                     .lineSpacing(5)
@@ -83,10 +83,6 @@ struct MessageContent:View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-//        ContentView()
-//        ContentImage()
-//        Label()
-//        RowContent()
         MessageContent()
     }
 }
