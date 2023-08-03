@@ -67,18 +67,15 @@ struct MessageContent:View {
                     DengjiLabel(iconName: "dengji", text: "54").frame(width: 26, height: 12)
                     ZhanglaoLabel(iconName: "zhanglao", text: "长老").frame(width: 32, height: 12)
                 }
-                Text("：当前文本是用户发的一段话，可以换行的一段话")
+                Text("                                                   ：当前文本是用户发的一段话，可以换行的一段话")
                     .bold()
                     .font(Font.system(size: 12))
                     .foregroundColor(Color(UIColor(hex: 0x181E25)))
                     .frame(width: 260, height: 40)
-                    .padding(EdgeInsets(top: -25, leading: 0, bottom: 0, trailing: 0))
-//                    .lineLimit(nil)
-//                    .multilineTextAlignment(.leading)
-//                    .tabViewStyle(PageTabViewStyle())
-//                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-//                    .tabItemAttributes(TabItemAttributes(label: ""), selection: {})
-//                    .padding(.leading, 20)//设置首行缩进
+                    .padding(EdgeInsets(top: -25, leading: -5, bottom: 0, trailing: 0))
+                    .lineLimit(nil)
+                    .multilineTextAlignment(.leading)
+                    .lineSpacing(5)
             }.padding(EdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0))
         }
     }
